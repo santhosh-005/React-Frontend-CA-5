@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import '../App.css'
 
 
 function SignUp() {
@@ -12,20 +13,23 @@ const [submit,setSubmit]=useState(false)
 
     const password = watch('password');
 
-    submit && isValid ? (localStorage.setItem(watch("name")),setTimeout(()=> navigate("/"),3000)): null
+    submit && isValid ? (sessionStorage.setItem("userName",watch("name")),setTimeout(()=> navigate("/"),2000)): null
 
     const onSubmit=(data)=>{
         setSubmit(true)
     }
 
   return (
-    <div>
+    <div className='form-page'>
       <form onSubmit={handleSubmit(onSubmit)}>
-      {submit && isValid ? <div id="success-msg-div">
-   <h1>Registered Successfully</h1>
-       </div> : null}
+        <h1 className="form-title">REGISTRATION FORM</h1>
+      {submit && isValid ?
+      <div className="success-msg-div"> <h1>Registered Successfully!</h1>
+      <div>Please wait...you will be redirected</div></div>
+  
+     : null}
 
-        <input type="text" placeholder='your name' {...register("name",{required:"firstname is required",minLength:{
+        <input type="text" placeholder='your name' {...register("name",{required:"name is required",minLength:{
             value:3,
             message:"name must be greater than 3 characters"
         },
@@ -47,7 +51,7 @@ const [submit,setSubmit]=useState(false)
         <input type="text" placeholder='repeat password' {...register("repeatPassword",{required:"Please repeat the password",validate:(value)=>  value === password || "Password does not match",
     })} />
         <p>{errors.repeatPassword?.message}</p>
-        <button type='submit'>Register Now</button>
+        <button type='submit' className='registerBtn'>Register Now</button>
       </form>
     </div>
   )
