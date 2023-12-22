@@ -5,6 +5,7 @@ import logo from "../assets/kalviumLogo.png";
 import registerImg from "../assets/register.png";
 import offerLogo from "../assets/offerLogo.png";
 import "../App.css";
+import noImage from '../assets/no-image.jpg'
 
 function Book() {
   window.onload = function () {
@@ -29,12 +30,12 @@ function Book() {
   }, []);
 
   const handleSearch = (value) => {
-    setSearchValue(value);
+    setSearchValue(value.toLowerCase());
 
     axios
       .post(
         "https://reactnd-books-api.udacity.com/search",
-        { query: value, maxResults: 30 },
+        { query: searchValue, maxResults: 30 },
         { headers: { Authorization: "whatever-you-want" } }
       )
       .then((res) => {
@@ -85,18 +86,17 @@ function Book() {
         <h1>CHRISTMAS OFFER</h1>
         <img src={offerLogo} alt="offer" />
       </div>
-
       <div
         className="books-container"
         style={{ width: "100%", height: "100%" }}
       >
-        {Array.isArray(filterList) &&
+        {Array.isArray(filterList) ?
           filterList.map((book, index) => {
             return (
               <div key={index} className="books">
-                {book.imageLinks && book.imageLinks.thumbnail && (
+                {book.imageLinks && book.imageLinks.thumbnail ? (
                   <img src={book.imageLinks.thumbnail} alt={book.title} />
-                )}
+                ) : <img src={noImage} />}
                 <p className="title">{book.title}</p>
                 <div>
                   <span>{book.averageRating ? book.averageRating : "3"}</span>
@@ -105,7 +105,7 @@ function Book() {
                 </div>
               </div>
             );
-          })}
+          }) : <h1 style={{color:'red'}}>No Books Available</h1>}
       </div>
     </div>
   );
