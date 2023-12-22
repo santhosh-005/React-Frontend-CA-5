@@ -5,7 +5,7 @@ import logo from "../assets/kalviumLogo.png";
 import registerImg from "../assets/register.png";
 import offerLogo from "../assets/offerLogo.png";
 import "../App.css";
-import noImage from '../assets/no-image.jpg'
+import noImage from "../assets/no-image.jpg";
 
 function Book() {
   window.onload = function () {
@@ -46,7 +46,7 @@ function Book() {
       });
   };
   let filterList = searchValue !== "" ? searchBooks : books;
-//   console.log(filterList);
+  //   console.log(filterList);
 
   return (
     <div>
@@ -67,7 +67,7 @@ function Book() {
           />
           <i className="fa fa-search"></i>
         </div>
-        <div>
+        <div className="login-div">
           {sessionStorage.getItem("userName") ? (
             <p>
               Hello
@@ -90,22 +90,34 @@ function Book() {
         className="books-container"
         style={{ width: "100%", height: "100%" }}
       >
-        {Array.isArray(filterList) ?
+        {Array.isArray(filterList) ? (
           filterList.map((book, index) => {
             return (
-              <div key={index} className="books">
-                {book.imageLinks && book.imageLinks.thumbnail ? (
-                  <img src={book.imageLinks.thumbnail} alt={book.title} />
-                ) : <img src={noImage} />}
-                <p className="title">{book.title}</p>
-                <div>
-                  <span>{book.averageRating ? book.averageRating : "3"}</span>
-                  <span>⭐</span>
-                  <span>Free</span>
+              <Link
+                style={{ textDecoration: "none" }}
+                to="/bookinfo"
+                state={book}
+                key={index}
+              >
+                <div className="books">
+                  {book.imageLinks && book.imageLinks.thumbnail ? (
+                    <img src={book.imageLinks.thumbnail} alt={book.title} />
+                  ) : (
+                    <img src={noImage} />
+                  )}
+                  <p className="title">{book.title}</p>
+                  <div>
+                    <span>{book.averageRating ? book.averageRating : "3"}</span>
+                    <span>⭐</span>
+                    <span>Free</span>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
-          }) : <h1 style={{color:'red'}}>No Books Available</h1>}
+          })
+        ) : (
+          <h1 style={{ color: "red" }}>No Books Available</h1>
+        )}
       </div>
     </div>
   );
