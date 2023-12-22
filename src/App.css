@@ -50,7 +50,7 @@
 .banner {
   height: 280px;
   width: 100%;
-  background-image: url(./assets/bannerBg4.jpg);
+  background-image: url(./assets/winterBg.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -96,8 +96,8 @@
   width: 188px;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 4px 18px rgb(94, 93, 93);
-  transition: transform 0.3s ease-out;
+  box-shadow: 4px 4px 18px rgb(73, 72, 72);
+  transition: transform  0.3s ease-out;
   overflow-y:scroll;
   scrollbar-width:none;
 }
@@ -108,7 +108,7 @@
 }
 
 .books:hover{
-transform: scale(1.06);
+transform: scale(1.07);
 cursor: pointer;
 }
 

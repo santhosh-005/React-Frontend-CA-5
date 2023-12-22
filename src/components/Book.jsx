@@ -6,6 +6,7 @@ import registerImg from "../assets/register.png";
 import offerLogo from "../assets/offerLogo.png";
 import "../App.css";
 import noImage from "../assets/no-image.jpg";
+import booksImage from "../assets/books.png";
 
 function Book() {
   window.onload = function () {
@@ -83,8 +84,11 @@ function Book() {
         </div>
       </div>
       <div className="banner">
-        <h1>CHRISTMAS OFFER</h1>
-        <img src={offerLogo} alt="offer" />
+        <img src={booksImage} alt="" />
+        <div>
+          <img src={offerLogo} style={{display:'block',margin:'auto'}}/> 
+          <h1 style={{paddingBottom:'30px'}}>CHRISTMAS OFFER</h1>
+        </div>
       </div>
       <div
         className="books-container"

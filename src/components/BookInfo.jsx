@@ -24,7 +24,7 @@ function BookInfo() {
         <h4>Average Rating: {book.averageRating ? book.averageRating : "3"}</h4>
         <h5>Page Count: {book.pageCount ? book.pageCount : null}</h5>
         <h5>Published date: {book.publishedDate ? book.publishedDate : null}</h5>
-        <p>{book.description}</p>
+        <p><b>Discription: </b>{book.description}</p>
         </div>
         <Link to='/'><button>Back To Home</button></Link>
         </div>
